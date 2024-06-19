@@ -21,8 +21,8 @@
                 </tr>
             </thread>
             <tbody id="contacts">
-                <tr v-for="(contact, index) in contacts" :key="contact.no">
-                    <td>{{ 1 + index }}</td>
+                <tr v-for="contact in contacts" :key="contact.no">
+                    <td>{{ contact.no }}</td>
                     <td>{{ contact.name }}</td>
                     <td>{{ contact.tel }}</td>
                 </tr>
