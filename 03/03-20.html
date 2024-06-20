@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>03-21</title>
+    <title>03-20</title>
     <style>
         #app { width: 100px; height: 100px; }
         #app img { width: 100%; height: 100%; }
@@ -11,7 +11,7 @@
 </head>
 <body>
     <div id="app">
-        <img v-bind="image1" />
+        <img v-bind:[image1._src]="image1.src" :[image1._title]="image1.title" />
     </div>
 
     <script type="text/javascript" src="https://unpkg.com/vue"></script>
@@ -22,11 +22,13 @@
             name: 'App',
             data: () => ({ 
                 image1: { 
+                    _src: 'scr',
                     src: 'https://contactsvc.bmaster.kro.kr/photos/18.jpg',
+                    _title: 'title',
                     title: 'Lily`s photo'
                 }
              })
         }).mount('#app');
     </script>
 </body>
-</html>
+</html> 
