@@ -3,29 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>03-21</title>
-    <style>
-        #app { width: 100px; height: 100px; }
-        #app img { width: 100%; height: 100%; }
-    </style>
+    <title>04-01</title>
 </head>
 <body>
     <div id="app">
-        <img v-bind="image1" />
+        <input id="a" type="text" v-model="name" />
+        <br />
+        입력하신 이름: <span>{{ name }}</span>
     </div>
 
     <script type="text/javascript" src="https://unpkg.com/vue"></script>
     <script type="text/javascript">
-        console.log('Vue.js is Loaded!');
-
         let vm = Vue.createApp({
             name: 'App',
-            data: () => ({ 
-                image1: { 
-                    src: 'https://contactsvc.bmaster.kro.kr/photos/18.jpg',
-                    title: 'Lily`s photo'
-                }
-             })
+            data: () => ({ name: '' })
         }).mount('#app');
     </script>
 </body>
