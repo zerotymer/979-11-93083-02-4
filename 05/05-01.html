@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>03-08</title>
+    <title>05-01</title>
 </head>
 <body>
     <div id="app">
-        <input id="a" type="text" :value="name" 
-            @input="(e) => this.name = e.target.value">
+        금액: <input type="text" v-model.number="amount" /><br />
+        <button v-on:click="balance += parseInt(amount)">입금</button>
+        <button v-on:click="balance -= parseInt(amount)">출금</button>
         <br />
-        입력하신 이름: <span>{{ name }}</span>
+        <h3>계좌 잔고: {{ balance }}</h3>
     </div>
 
     <script type="text/javascript" src="https://unpkg.com/vue"></script>
@@ -18,11 +19,9 @@
         let vm = Vue.createApp({
             name: 'App',
             data: () => ({ 
-                name: ''
-             }),
-             methods: {
-                changeName(e) { this.name = e.target.value; }
-             }
+                amount: 0,
+                balance: 0
+            }),
         }).mount('#app');
     </script>
 </body>

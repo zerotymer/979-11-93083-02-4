@@ -7,8 +7,7 @@
 </head>
 <body>
     <div id="app">
-        <input id="a" type="text" :value="name" 
-            @input="(e) => this.name = e.target.value">
+        <input id="a" type="text" :value="name" @input="changeName">
         <br />
         입력하신 이름: <span>{{ name }}</span>
     </div>
