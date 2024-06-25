@@ -3,36 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>04-03</title>
+    <title>05-01</title>
 </head>
 <body>
     <div id="app">
-        1보다 큰수: <input id="a" type="text" v-model.number="num">
+        금액: <input type="text" v-model.number="amount" /><br />
+        <button v-on:click="balance += parseInt(amount)">입금</button>
+        <button v-on:click="balance -= parseInt(amount)">출금</button>
         <br />
-        1부터 입력한 값까지의 합: <span>{{ sum }}</span><br />
-        1부터 입력한 값까지의 합: <span>{{ sum }}</span><br />
-        1부터 입력한 값까지의 합: <span>{{ sum }}</span><br />
+        <h3>계좌 잔고: {{ balance }}</h3>
     </div>
 
     <script type="text/javascript" src="https://unpkg.com/vue"></script>
     <script type="text/javascript">
         let vm = Vue.createApp({
             name: 'App',
-            data: () => ({ num: 0, text: 'argument test' }),
-            beforeCreate: function() { console.log('before created'); console.log(`beforeCreate: ${ this.text }`); },
-            created: function() { console.log('created'); console.log(`created: ${ this.text }`); },
-            beforeMount: function() { console.log('beforeMount'); console.log(`beforeMount: ${ this.text }`); },
-            mounted: function() { console.log('mounted'); console.log(`mouted: ${ this.text }`); },
-            beforeUpdate: function() { console.log('beforeUpdate'); console.log(`beforeUpdate: ${ this.text }`); },
-            updated: function() { console.log('updated'); console.log(`updated: ${ this.text }`); },
-            computed: {
-                sum() {
-                    console.log(`## num: ${ this.num }`);
-                    var n = parseInt(this.num);
-                    if (Number.isNaN(n)) return 0;
-                    return (n * (n + 1)) / 2;
-                }
-            }
+            data: () => ({ 
+                amount: 0,
+                balance: 0
+            }),
         }).mount('#app');
     </script>
 </body>
