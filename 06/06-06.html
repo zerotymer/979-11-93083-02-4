@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>06-07</title>
+    <title>06-06</title>
     <style>
         .buttonColor { background-color: aqua; color: black; }
         .buttonLayout { text-align: center; width: 120px; }
@@ -12,10 +12,7 @@
 </head>
 <body>
     <div id="app">
-        <input type="checkbox" v-model="isMyLayout">레이아웃 적용 여부<br />
-        <button class="staticBorder" :class="[ myColor, isMyLayout ? myLayout : '']">
-            테스트 버튼
-        </button>
+        <button class="staticBorder" :class="[ myColor, myLayout ]">테스트 버튼</button>
     </div>
     <script type="text/javascript" src="https://unpkg.com/vue"></script>
     <script type="text/javascript">
@@ -24,8 +21,7 @@
             name: 'App',
             data: () => ({ 
                 myColor: 'buttonColor',
-                myLayout: 'buttonLayout',
-                isMyLayout: false
+                myLayout: 'buttonLayout'
             }),
         }).mount('#app');
     </script>

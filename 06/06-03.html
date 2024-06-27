@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06-03</title>
+</head>
+<body>
+    <div id="app">
+        <button id="a" :style="{ backgroundColor: bgColor, color}"
+            @mouseover.stop="overEvent"
+            @mouseout.stop="outEvent">테스트</button>
+    </div>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    <script type="text/javascript">
+        const BASE_URL = 'https://contactsvc.bmaster.kro.kr';
+        let vm = Vue.createApp({
+            name: 'App',
+            data: () => ({ 
+                bgColor: 'aqua',
+                color: 'black'x
+            }),
+            methods: {
+                overEvent: function() {
+                    this.bgColor = 'purple';
+                    this.color = 'yellow';
+                },
+                outEvent: function() {
+                    this.bgColor =- 'aqua';
+                    this.color = 'black';
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
