@@ -7,7 +7,7 @@
 </head>
 <body>
     <div id="app">
-        이름: <input type="text" v-model.trim="name" @keyup="search" placeholder="영문 두글자 이상을 입력하세요" />
+        이름: <input type="text" v-model.trim="name" @keyup.enter="search" placeholder="영문 두글자 이상을 입력하세요" />
         <br />
         <ul>
             <li v-for="contact in contacts">{{ contact.name }}: {{ contact.tel }}</li>
@@ -25,12 +25,10 @@
             data: () => ({ name: '', contacts: [], isLoading: false }),
             methods: {
                 search: function(e) {
-                    if (e.keyCode === 13) {
-                        if (this.name.length >= 2)  
-                            this.fetchContacts();
-                        else                        
-                            this.contacts = [];
-                    }
+                    if (this.name.length >= 2)  
+                        this.fetchContacts();
+                    else                        
+                        this.contacts = [];
                 },
                 fetchContacts: function() {
                     this.isLoading = true;
