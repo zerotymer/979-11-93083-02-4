@@ -7,8 +7,10 @@
 <script>
     export default {
         name: 'CheckboxItem',
-        props: ['name', 'checked']
-
+        props: ['name', 'checked'],
+        // created: function() {
+        //     this.checked = true;
+        // }
     }
 </script>
 
