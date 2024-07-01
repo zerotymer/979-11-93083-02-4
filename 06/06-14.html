@@ -1,0 +1,30 @@
+<div class="card card-body bg-light">
+    <div class="title">:: Todolist App</div>
+</div>
+<div class="card card-default card-borderless">
+
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col">
+                <div class="input-group">
+                    <input id="msg" type="text" class="form-controll" name="msg" placeholder="할일을 여기에 입력!" 
+                        v-model.trim="todo" @keyup.enter="addTodo"/>
+                    <span class="btn btn-primary input-group-addon" @click="addTodo">추가</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col">
+                <ul class="list-group">                          
+                    <li v-for="(item, index) in todolist" :key="item.id"
+                        class="list-group-item" :class="{ 'list-group-item-success': item.completed }"
+                        @click="toggleCompleted(item.id)">
+                        <span class="pointer" :class="{ 'todo-done': item.completed }">{{ item.todo }}{{ item.completed ? ' (완료)' : '' }}</span>
+                        <span class="float-end badge bg-secondary pointer" @click.stop="deleteTodo(item.id)">삭제</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
