@@ -6,24 +6,25 @@
       <CheckboxItem 
         v-for="item in idols" 
         :key="item.id"
-        v-bind="item" />
+        :item="item" />
     </ul>
   </div>
 </template>
 
 
 <script>
-import CheckboxItem from './components/CheckboxItem.vue';
+import CheckboxItem from './components/CheckboxItem3.vue';
+import Idol from './Idol';
 
 export default {
   name: 'App',
   components: { CheckboxItem },
   data: () => ({
     idols: [
-      { id: 1, name: "BTS", checked: true },
-      { id: 2, name: "Black Pink" },
-      { id: 3, name: "EXO" },
-      { id: 4, name: "ITZY" },
+      new Idol(1, "BTS", true ),
+      new Idol(2, "Black Pink", false ),
+      new Idol(3, "EXO", false ),
+      new Idol(4, "ITZY", false ),
     ]
   })
 };
