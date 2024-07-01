@@ -1,8 +1,15 @@
+<script>
+import CheckboxItem from './components/CheckboxItem.vue';
 
+export default {
+  name: 'App',
+  components: { CheckboxItem }
+};
+</script>
 
 <template>
   <div>
-    <h2> App 컴포넌트</h2>
+    <h2>App 컴포넌트</h2>
     <hr />
     <ul>
       <CheckboxItem />
@@ -12,12 +19,3 @@
     </ul>
   </div>
 </template>
-
-<script>
-import CheckboxItem from './components/CheckboxItem.vue';
-
-export default {
-  name: 'App',
-  components: { CheckboxItem }
-};
-</script>
