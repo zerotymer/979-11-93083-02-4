@@ -1,6 +1,6 @@
 <template>
   <div>
-    <InputName @nameChanged="nameChangedHandler" @contextmenu="test" />
+    <InputName @nameChanged="nameChangedHandler" />
     <br />
     <h3>App 데이터 : {{ parentName }} </h3>
   </div>
@@ -18,11 +18,7 @@ export default {
   }),
   methods: {
     nameChangedHandler: function(arg) {
-      console.log(va);
       this.parentName = arg.name;
-    },
-    test: function(e) {
-      console.log(arguments);
     }
   }
 };

@@ -8,6 +8,10 @@
 <script>
     export default {
         name: 'InputName',
+        // emits: [ 'nameChanged1' ],
+        emits: {
+            nameChanged: (arg) => ( arg.name && typeof(arg.name) === 'string' && arg.name.trim().length >= 3)
+        },
         data: () => ({
             name: ''
         })
