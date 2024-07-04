@@ -21,7 +21,7 @@ export default {
     methods: {
         addTodoHandler: function() {
             if (this.todo && typeof(this.todo) === 'string' && this.todo.length > 2) {
-                this.$emit('add-todo', this.todo);
+                this.emitter.emit('add-todo', this.todo);
                 this.todo = '';
             }
         }

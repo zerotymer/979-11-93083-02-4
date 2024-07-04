@@ -5,10 +5,8 @@
     </div>
     <div class="card card-default card-borderless">
       <div class="card-body">
-        <InputTodo v-model:value="todo" @add-todo="addTodo" />
-        <TodoList :list="list" 
-          @delete-todo="deleteTodo" 
-          @toggle-todo="toggleTodo" />
+        <InputTodo v-model:value="todo" />
+        <TodoList :list="list" />
       </div>
     </div>    
   </div>
@@ -49,5 +47,10 @@ export default {
       this.list[index].completed = !this.list[index].completed;
     }
   },
+  created: function() {
+    this.emitter.on('add-todo', this.addTodo);
+    this.emitter.on('delete-todo', this.deleteTodo);
+    this.emitter.on('toggle-todo', this.toggleTodo);
+  }
 }
 </script>

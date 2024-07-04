@@ -3,9 +3,7 @@
         <div class="col">
             <ul class="list-group">
                 <TodoListItem v-for="item in list" :key="item.id" 
-                    v-bind="item"
-                    @delete-todo="$emit('delete-todo', $event)"
-                    @toggle-todo="$emit('toggle-todo', $event)" />
+                    v-bind="item" />
             </ul>
         </div>
     </div>
