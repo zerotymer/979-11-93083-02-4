@@ -12,27 +12,35 @@
     </nav>
   </div>  
   <div class="container">
-    <keep-alive include="CoralSeaTab,MidwayTab">
-      <component :is="currentTab"></component>
-    </keep-alive>
+    <component :is="currentTab"></component>
   </div>
 </template>
 
 
 <script>
-import CoralSeaTab from './components/CoralSeaTab.vue';
-import MidwayTab from './components/MidwayTab.vue';
-import LeyteGulfTab from './components/LeyteGulfTab.vue';
+import { defineAsyncComponent } from 'vue';
+import pMinDelay from 'p-min-delay';
+import Loading from './components/Loading.vue';
+
+const CoralSeaTab = defineAsyncComponent({
+  loader: () => pMinDelay(import('./components/CoralSeaTab.vue'), 2000),
+  loadingComponent: Loading
+});
+const MidwayTab = defineAsyncComponent(() => pMinDelay(import('./components/MidwayTab.vue'), 2000));
+const LeyteGulfTab = defineAsyncComponent(() => pMinDelay(import('./components/LeyteGulfTab.vue'), 2000));
+// import CoralSeaTab from './components/CoralSeaTab.vue';
+// import MidwayTab from './components/MidwayTab.vue';
+// import LeyteGulfTab from './components/LeyteGulfTab.vue';
 
 export default {
   name: 'App',
   components: { CoralSeaTab, LeyteGulfTab, MidwayTab },
   data: () => ({
-    currentTab: CoralSeaTab.name,
+    currentTab: 'CoralSeaTab',
     tabs: [
-      { id: CoralSeaTab.name, label: '산호해 해전' },
-      { id: MidwayTab.name, label: '미드웨이 해전' },
-      { id: LeyteGulfTab.name, label: '레이테만 해전' },
+      { id: 'CoralSeaTab', label: '산호해 해전' },
+      { id: 'MidwayTab', label: '미드웨이 해전' },
+      { id: 'LeyteGulfTab', label: '레이테만 해전' },
     ]
   }),
   methods: {
