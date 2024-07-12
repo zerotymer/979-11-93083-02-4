@@ -2,26 +2,21 @@
     <div>
         X: <input type="text" v-model.number="state.x" /><br />
         Y: <input type="text" v-model.number="state.y" /><br />
-        <button @click="calcAdd">계산</button><br />
-        <div>결과: {{ state.result }}</div>
+        <div>결과: {{ result }}</div>
     </div>
 </template>
 
 <script>
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 
 export default {
     name: 'Calc',
     setup: function(props, context) {
-        // const x = ref(10)
-        // const y = ref(20)
-        // const result = ref(30)
-
         const state = reactive({ x: 10, y: 20, result: 30})
 
-        const calcAdd = () => state.result = state.x + state.y
+        const result = computed(() => (state.x + state.y))
 
-        return { state, calcAdd }
+        return { state, result }
     }    
 }
 </script>
