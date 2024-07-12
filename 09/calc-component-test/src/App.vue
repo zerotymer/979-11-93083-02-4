@@ -6,7 +6,8 @@
 
 
 <script>
-import Calc from './components/Calc.vue'
+// import Calc from './components/Calc.vue'
+import Calc from './components/Calc2.vue'
 
 export default {
   name: 'App',
