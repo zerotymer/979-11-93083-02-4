@@ -13,26 +13,21 @@
 </template>
 
 
-<script>
+<script setup>
 import { ref } from 'vue';
-export default {
-    name: 'InputTodo',
-    emits: [ 'add-todo' ],
-    setup: function(props, context) {
 
-        /// data - state
-        const todo = ref('')
+/// data
+const todo = ref('')
 
-        /// methods
-        const addTodoHandler = () => {
-            console.log('input', todo)
-            if (todo.value && typeof(todo.value) === 'string' && todo.value.length > 2) {
-                context.emit('add-todo', todo.value);
-                todo.value = '';
-            }
-        }
+/// defines
+const emit = defineEmits([ 'add-todo' ])
 
-        return { todo, addTodoHandler }
+/// methods
+const addTodoHandler = () => {
+    console.log('input', todo)
+    if (todo.value && typeof(todo.value) === 'string' && todo.value.length > 2) {
+        emit('add-todo', todo.value);
+        todo.value = '';
     }
 }
 </script>

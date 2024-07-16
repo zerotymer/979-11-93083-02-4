@@ -4,21 +4,21 @@
             <ul class="list-group">
                 <TodoListItem v-for="item in list" :key="item.id" 
                     v-bind="item"
-                    @delete-todo="$emit('delete-todo', $event)"
-                    @toggle-todo="$emit('toggle-todo', $event)"/>
+                    @delete-todo="emit('delete-todo', item.id)"
+                    @toggle-todo="emit('toggle-todo', item.id)"/>
             </ul>
         </div>
     </div>
 </template>
 
 
-<script>
+<script setup>
 import TodoListItem from './TodoListItem.vue';
 
-export default {
-    name: 'TodoList',
-    components: { TodoListItem },
-    props: { list: { type: Array, required: true} }, 
-    emits: [ 'delete-todo', 'toggle-todo' ],
-}
+/// defines
+const props = defineProps({ 
+    list: { type: Array, required: true} 
+}) 
+const emit = defineEmits([ 'delete-todo', 'toggle-todo' ])
+
 </script>
