@@ -1,18 +1,29 @@
 <template>
-    <div class="card card-body">
-        <h2>Members</h2>
-        <p>요청 경로: {{ currentRoute.fullPath }}</p>
+    <div>
+        <h2 class="m-4">이날치 멤버</h2>
+        <div class="container">
+            <div class="row">
+                <div v-for="member in members" :key="member.id"
+                    class="col-6 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <router-link :to="`/members/${member.id}`">
+                        <img class="img-thumbnail"
+                            style="width: 90px; height: 110px;"
+                            :src="member.photo" :title="member.name" /> <br />
+                        <h6 class="display-7">{{ member.name }}</h6>
+                    </router-link>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-import { useRoute } from 'vue-router'
+import members from '@/members.json'
 
 export default {
     name: 'Members',
     setup: function(props, context) {
-        const currentRoute = useRoute()
-        return { currentRoute }
+        return { members }
     }
 }
 </script>
