@@ -15,7 +15,6 @@
 </template>
 
 
-
 <script setup>
 import { reactive, onMounted } from 'vue'
 import InputTodo from './components/InputTodo.vue'
