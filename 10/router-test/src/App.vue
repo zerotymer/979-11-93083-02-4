@@ -7,11 +7,16 @@
 
 
 <script>
+import { provide } from 'vue'
 import Header from './components/Header.vue'
+import videos from '@/videos.json'
 
 export default {
   name: 'App',
-  components: { Header }
+  components: { Header },
+  setup: function(props, context) {
+    provide('videos', videos)
+  }
 }
 </script>
 
@@ -23,4 +28,4 @@ export default {
 .fa-facebook { background: #3B5998; color: white }
 .fa-youtube { background: #bb0000; color: white }
 .fa-instagram { background: #125688; color: white }
-</style>
+</style>  
