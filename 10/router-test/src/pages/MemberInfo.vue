@@ -8,7 +8,7 @@
         <a v-if="member.youtube && member.youtube.length > 0" class="f fa-youtube m1" :href="member.youtube"></a>
         <br />
         <br />
-        <router-link to="/members">멤버 목록으로</router-link>
+        <router-link :to="{ name: 'members' }">멤버 목록으로</router-link>
     </div>
 </template>
 

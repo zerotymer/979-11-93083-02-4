@@ -37,17 +37,12 @@ export default {
         const playerRef = ref()
         const currentRoute = useRoute()
         const router = useRouter()
-
-        console.log('playerRef', playerRef)
-        window.test = playerRef
+        const defaultURI = { name: 'videos/id' }
 
         /// data
         let videoInfo = reactive({
             video: videos.find(i => i.id === currentRoute.params.id)
         })
-
-        console.log('test')
-        console.log(playerRef.value)
 
         /// methods
         const stopVideo = () => {
@@ -55,7 +50,7 @@ export default {
             const player = playerRef.value.player
             player && player.stopVideo()
             console.log('debug', player)
-            router.push('/videos')
+            router.push({ name: 'videos' })
         }
         const playNext = () => {
             let index = videos.findIndex( i => i.id === currentRoute.params.id)
@@ -63,7 +58,7 @@ export default {
 
             const nextVideo = videos[index]
             videoInfo.video = nextVideo
-            router.push(`/videos/${ videoInfo.video.id }`)
+            router.push({ params: { id: nextVideo.id }, ...defaultURI })
         }
         const playPrev = () => {
             let index = videos.findIndex( i => i.id === currentRoute.params.id)
@@ -71,7 +66,7 @@ export default {
 
             const prevVideo = videos[index]
             videoInfo.video = prevVideo
-            router.push(`/videos/${ prevVideo.id }`)
+            router.push({ params: { id: prevVideo.id }, ...defaultURI })
         }
 
         return { videoInfo, stopVideo, playNext, playPrev, playerRef }
