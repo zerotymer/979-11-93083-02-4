@@ -25,7 +25,7 @@
 
 <script>
 import { reactive, ref, inject } from 'vue'
-import { useRoute, useRouter  } from 'vue-router'
+import { onBeforeRouteUpdate, useRoute, useRouter  } from 'vue-router'
 import { YouTubeVue3  } from 'youtube-vue3'
 
 export default {
@@ -44,6 +44,15 @@ export default {
             video: videos.find(i => i.id === currentRoute.params.id)
         })
 
+        let current, prev, next
+        const updateNavId = (to, from) => {
+            videoInfo.video = videos.find(i => i.id === to.params.id)
+            current = videos.findIndex(i => i.id === videoInfo.video.id)
+            prev = current > 0 ? videos[current - 1].id : videos[videos.length - 1].id
+            next = current < videos.length ? videos[current + 1].id : videos[0].id
+        }
+        updateNavId(currentRoute)
+
         /// methods
         const stopVideo = () => {
             // playerRef.value.player is undefined.
@@ -53,21 +62,14 @@ export default {
             router.push({ name: 'videos' })
         }
         const playNext = () => {
-            let index = videos.findIndex( i => i.id === currentRoute.params.id)
-            index = ++index < videos.length ? index : 0;
-
-            const nextVideo = videos[index]
-            videoInfo.video = nextVideo
-            router.push({ params: { id: nextVideo.id }, ...defaultURI })
+            next && router.push({ params: { id: prev }, ...defaultURI })
         }
         const playPrev = () => {
-            let index = videos.findIndex( i => i.id === currentRoute.params.id)
-            index = --index >= 0 ? index : videos.length - 1;
-
-            const prevVideo = videos[index]
-            videoInfo.video = prevVideo
-            router.push({ params: { id: prevVideo.id }, ...defaultURI })
+            prev && router.push({ params: { id: next }, ...defaultURI })
         }
+
+        /// Component Navigation Guard
+        onBeforeRouteUpdate((to, from) => updateNavId(to))
 
         return { videoInfo, stopVideo, playNext, playPrev, playerRef }
     }
