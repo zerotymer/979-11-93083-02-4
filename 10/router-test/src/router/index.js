@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory, isNavigationFailure } from 'vue-router';
 
-import Home from '@/pages/Home.vue';
-import About from '@/pages/About.vue';
-import Members from '@/pages/Members.vue';
-import MemberInfo from '@/pages/MemberInfo.vue';
-import Videos from '@/pages/Videos.vue';
-import VideoPlayer from '@/pages/VideoPlayer.vue';
+const Home = () => import('@/pages/Home.vue');
+const About = () => import('@/pages/About.vue');
+const Members = () => import('@/pages/Members.vue');
+const MemberInfo = () => import('@/pages/MemberInfo.vue');
+const Videos = () => import('@/pages/Videos.vue');
+const VideoPlayer = () => import('@/pages/VideoPlayer.vue');
 import NotFound from '@/pages/NotFound.vue';
 
 
