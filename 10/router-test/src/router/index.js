@@ -26,7 +26,9 @@ const router = createRouter({
         { path: '/', name: 'home', component: Home },
         { path: '/about', name: 'about', component: About },
         { path: '/members', name: 'members', component: Members },
-        { path: '/members/:id', name: 'members/id', component: MemberInfo, beforeRouteEnter: membersIdGuard },
+        { path: '/members/:id', name: 'members/id', component: MemberInfo, 
+            beforeRouteEnter: membersIdGuard, props: true 
+        },
         { path: '/videos', name: 'videos', component: Videos,
             children: [
                 { path: ':id', name: 'videos/id', component: VideoPlayer }

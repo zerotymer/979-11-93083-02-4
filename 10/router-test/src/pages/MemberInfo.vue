@@ -19,10 +19,12 @@ import members from '@/members.json'
 
 export default {
     name: 'MemberInfo',
+    props: [ 'id' ],
     setup: function(props, context) {
-        const currentRoute = useRoute()
-        const id = parseInt(currentRoute.params.id, 10)
-        const member = members.find(m => m.id === id)
+        // const currentRoute = useRoute()
+        // const id = parseInt(currentRoute.params.id, 10)
+        // const member = members.find(m => m.id === id)
+        const member = members.find(m => m.id === parseInt(props.id, 10))
         return { member }
     }
 }
