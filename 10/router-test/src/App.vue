@@ -1,7 +1,14 @@
 <template>
   <div class="container">
     <Header />
-    <router-view></router-view>
+    <router-view v-slot="{ Component }">
+      <Suspense timeout="0">
+        <Component :is="Component"></Component>
+        <template #fallback>
+          <Loading />
+        </template>
+      </Suspense>
+    </router-view>
   </div>
 </template>
 
@@ -9,11 +16,12 @@
 <script>
 import { provide } from 'vue'
 import Header from './components/Header.vue'
+import Loading from './components/Loading.vue'
 import videos from '@/videos.json'
 
 export default {
   name: 'App',
-  components: { Header },
+  components: { Header, Loading },
   setup: function(props, context) {
     provide('videos', videos)
   }
@@ -28,4 +36,4 @@ export default {
 .fa-facebook { background: #3B5998; color: white }
 .fa-youtube { background: #bb0000; color: white }
 .fa-instagram { background: #125688; color: white }
-</style>  
+</style>

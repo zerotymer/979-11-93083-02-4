@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory, isNavigationFailure } from 'vue-router';
 
-const Home = () => import('@/pages/Home.vue');
-const About = () => import('@/pages/About.vue');
-const Members = () => import('@/pages/Members.vue');
-const MemberInfo = () => import('@/pages/MemberInfo.vue');
-const Videos = () => import('@/pages/Videos.vue');
-const VideoPlayer = () => import('@/pages/VideoPlayer.vue');
+const Home = () => import(/* webpackChunkName: "home" */ '@/pages/Home.vue');
+const About = () => import(/* webpackChunkName: "home" */ '@/pages/About.vue');
+const Members = () => import(/* webpackChunkName: "members" */ '@/pages/Members.vue');
+const MemberInfo = () => import(/* webpackChunkName: "members" */ '@/pages/MemberInfo.vue');
+const Videos = () => import(/* webpackChunkName: "videos" */ '@/pages/Videos.vue');
+const VideoPlayer = () => import(/* webpackChunkName: "home" */ '@/pages/VideoPlayer.vue');
 import NotFound from '@/pages/NotFound.vue';
 
 
