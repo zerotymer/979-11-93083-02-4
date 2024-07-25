@@ -6,7 +6,7 @@ const Members = () => import(/* webpackChunkName: "members" */ '@/pages/Members.
 const MemberInfo = () => import(/* webpackChunkName: "members" */ '@/pages/MemberInfo.vue');
 const Videos = () => import(/* webpackChunkName: "videos" */ '@/pages/Videos.vue');
 const VideoPlayer = () => import(/* webpackChunkName: "home" */ '@/pages/VideoPlayer.vue');
-import NotFound from '@/pages/NotFound.vue';
+const NotFound = () => import(/* webpackChunkName: "home" */ '@/pages/NotFound.vue');
 
 
 /// region - Route Navigation Guards
