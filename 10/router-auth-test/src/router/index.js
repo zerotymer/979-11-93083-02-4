@@ -17,8 +17,6 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
-    console.log('path', to.path)
-    console.log('auth', isMatchToRoles(to.path))
     // Global Navigation Guard - Authentication
     if (!isMatchToRoles(to.path)) // 비로그인 사용자
         return { name: 'login', query: { fromname: to.name } };
