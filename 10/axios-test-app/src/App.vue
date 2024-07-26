@@ -8,10 +8,25 @@
 <script>
 import axios from 'axios'
 
+const listUrl = '/api/todolist_long/gdhong'
+const todoUrlPrefix = '/api/todolist_long/gdhong/'
+
 const requestAPI = () => {
-  // const url = 'http://192.168.29.70:8000/todolist/gdhong'
-  const url = '/api/todolist/gdhong'
-  axios.get(url).then((response) => console.log('# 응답객체: ', response))
+  let todoList = []
+  axios.get(listUrl)
+    .then((response) => {
+      todoList = response.data
+      console.log('# TodoList: ', todoList)
+      return todoList[0].id
+    })
+    .then((id) => (axios.get(todoUrlPrefix + id)))
+    .then((response) => {
+      console.log('## 첫번째 Todo: ', response.data)
+      return todoList[1].id
+    })
+    .then((id) => {
+      axios.get(todoUrlPrefix + id).then(response => console.log('## 두번째 Todo: ', response.data))
+    })
 }
 
 requestAPI()
