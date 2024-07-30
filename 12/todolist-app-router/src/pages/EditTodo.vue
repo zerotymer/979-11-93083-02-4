@@ -1,64 +1,64 @@
 <template>
-  <div>
-    <h2>할일 수정</h2>
-    <div>
-      <h5>할일: </h5>
-      <input type="text" v-model.trim="todo" />
+  <div class="row">
+    <div class="col p-3">
+      <h2>할일 수정</h2>
     </div>
-    <div>
-      <h5>설명: </h5>
-      <textarea v-model.trim="desc" />
-    </div>
-    <div>
-      <button @click.stop="add">추가</button>
-      <button @click.stop="cancel">취소</button>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label htmlFor="todo">할일 :</label>
+        <input type="text" class="form-control" id="todo" v-model.trim="value.todo" />
+      </div>
+      <div class="form-group">
+        <label htmlFor="desc">설명 :</label>
+        <textarea rows="3" class="form-control" id="desc" v-model.trim="value.desc" />
+      </div>
+      <div class="form-group">
+        <label htmlFor="done">완료여부 :</label>
+        <input type="checkbox" id="done" v-model.trim="value.done" />
+      </div>
+      <div class="form-group">
+        <button type="button" class="btn btn-primary m-1" @click="updateTodoHandler">수정</button>
+        <button type="button" class="btn btn-primary m-1" @click="router.push(route_todos)">취 소</button>
+      </div>
     </div>
   </div>
 </template>
 
 
 <script setup>
-import { ref, reactive } from 'vue';
-import { createRouter } from 'vue-router'
+import { ref, reactive, inject } from 'vue';
+import { createRouter, useRouter } from 'vue-router'
 
-
-/// region pre-setup
+/// region pre-define
+const router = useRouter()
 const props = defineProps({
-  id: { type: string, required: true }
+  id: { type: Number, required: true }
 })
-// const emit = defineEmits({})
-/// endregion
-
-
-/// region data
-const todo = ref('')
-const desc = ref('')
+const id = Number.parseInt(props.id)
+const todolist = inject('todolist')
+let _value = todolist.find(i => i.id === id)
+if (!_value) {
+  window.alert('데이터가 없습니다.')
+  router.push(route_todos)
+}
+const value = reactive({ ..._value})
+const { updateTodo } = inject('actions')
+const route_todos = { name: 'todos' }
 /// endregion
 
 
 /// region methods
-const add = () => {
-  const valid = validate()
-  if (!valid.status) {
-    window.alert(valid.message)
-    return 
+const updateTodoHandler = () => {
+  // validation
+  if (value.todo.length == 0) {
+    window.alert('할일은 반드시 입력해야 합니다')
+    return
   }
 
-  // todo : API?
-
-}
-const cancel = () => {
-  console.log('cancel', todo.value)
-  todo.value = ''
-  desc.value = ''
-}
-
-const validate = () => {
-  const valid = { status: false, message: '' }
-  if (todo.value.length < 4) return 
-
-
-  return { status: true, ...valid }
+  updateTodo(value)
+  router.push(route_todos)
 }
 /// endregion
 

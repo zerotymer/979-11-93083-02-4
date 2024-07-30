@@ -1,62 +1,51 @@
 <template>
-  <div>
-    <h2>할일 추가</h2>
-    <div>
-      <h5>할일: </h5>
-      <input type="text" v-model.trim="todo" />
+  <div class="row">
+    <div class="col p-3">
+      <h2>할일 추가</h2>
     </div>
-    <div>
-      <h5>설명: </h5>
-      <textarea v-model.trim="desc" />
-    </div>
-    <div>
-      <button @click.stop="add">추가</button>
-      <button @click.stop="cancel">취소</button>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label htmlFor="todo">할일 :</label>
+        <input type="text" class="form-control" id="todo" v-model.trim="todo" />
+      </div>
+      <div class="form-group">
+        <label htmlFor="desc">설명 :</label>
+        <textarea rows="3" class="form-control" id="desc" v-model.trim="desc" />
+      </div>
+      <div class="form-group">
+        <button type="button" class="btn btn-primary m-1" @click="addTodoHandler">추 가</button>
+        <button type="button" class="btn btn-primary m-1" @click="router.push(route_todos)">취 소</button>
+      </div>
     </div>
   </div>
 </template>
 
 
 <script setup>
-import { ref, reactive } from 'vue';
-import { createRouter } from 'vue-router'
+import { ref, reactive, inject } from 'vue';
+import { createRouter, useRouter } from 'vue-router'
 
-
-/// region pre-setup
-// const props = defineProps({})
-// const emit = defineEmits({})
-/// endregion
-
-
-/// region data
+/// region pre-define
+const router = useRouter()
 const todo = ref('')
 const desc = ref('')
+const { addTodo } = inject('actions')
+const route_todos = { name: 'todos' }
 /// endregion
 
 
 /// region methods
-const add = () => {
-  const valid = validate()
-  if (!valid.status) {
-    window.alert(valid.message)
-    return 
+const addTodoHandler = () => {
+  // validation
+  if (todo.value.length == 0) {
+    window.alert('할일은 반드시 입력해야 합니다')
+    return
   }
 
-  // todo : API?
-
-}
-const cancel = () => {
-  console.log('cancel', todo.value)
-  todo.value = ''
-  desc.value = ''
-}
-
-const validate = () => {
-  const valid = { status: false, message: '' }
-  if (todo.value.length < 4) return 
-
-
-  return { status: true, ...valid }
+  addTodo(todo.value, desc.value)
+  router.push(route_todos)
 }
 /// endregion
 

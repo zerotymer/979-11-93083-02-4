@@ -12,9 +12,9 @@ export const routes = [
   { name: 'home', path: '/', description: '홈', component: Home, menu: true },
   { name: 'about', path: '/about', description: '소개', component: About, menu: true },
   { name: 'todos', path: '/todos', description: '일정관리', component: TodoList, menu: true },
-  { name: 'todos.add', path: '/todos/add', description: '할일 추가', component: AddTodo, menu: 'test' },
-  { name: 'todos.edit', path: '/todos/edit', description: '할일 수정', component: EditTodo, menu: 'test' },
-  { name: 'notfound', path: '/:path(.*)', description: '페이지를 찾을 수 없습니다.', component: NotFound, menu: false },
+  { name: 'todos.add', path: '/todos/add', description: '할일 추가', component: AddTodo },
+  { name: 'todos.edit', path: '/todos/edit/:id(\\d+)+', description: '할일 수정', component: EditTodo, props: true },
+  { name: 'notfound', path: '/:path(.*)', description: '페이지를 찾을 수 없습니다.', component: NotFound,  },
 ];
 
 export const createNamedRoute = (route, params) => ({ name: route.name, params: params});
