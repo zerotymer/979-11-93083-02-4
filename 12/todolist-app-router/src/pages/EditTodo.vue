@@ -38,7 +38,8 @@ const props = defineProps({
 })
 const id = Number.parseInt(props.id)
 const todolist = inject('todolist')
-let _value = todolist.find(i => i.id === id)
+window.test = todolist
+let _value = todolist.value.find(i => i.id === id)
 if (!_value) {
   window.alert('데이터가 없습니다.')
   router.push(route_todos)
@@ -57,8 +58,7 @@ const updateTodoHandler = () => {
     return
   }
 
-  updateTodo(value)
-  router.push(route_todos)
+  updateTodo(value, () => router.push(route_todos))
 }
 /// endregion
 

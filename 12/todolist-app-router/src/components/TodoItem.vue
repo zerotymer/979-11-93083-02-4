@@ -18,7 +18,7 @@
 
 
 <script setup>
-import { defineProps, inject } from 'vue';
+import { inject } from 'vue';
 import { useRouter } from 'vue-router'
 
 /// region data, state, props, inject

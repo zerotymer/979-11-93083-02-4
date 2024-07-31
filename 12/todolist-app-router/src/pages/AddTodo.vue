@@ -44,8 +44,7 @@ const addTodoHandler = () => {
     return
   }
 
-  addTodo(todo.value, desc.value)
-  router.push(route_todos)
+  addTodo(todo.value, desc.value, () => router.push(route_todos))
 }
 /// endregion
 
